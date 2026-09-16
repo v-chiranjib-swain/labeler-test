@@ -5,3 +5,5 @@ public class Foo {
         System.out.println("Hello from Foo!");
     }
 }
+
+// Testing 100+ labels with main branch of actions/labeler 
