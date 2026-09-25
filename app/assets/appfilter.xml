@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Sample appfilter contents -->
+    <!-- Trigger: testing 100 labels with actions/labeler@main -->
     <item component="ComponentInfo{com.example/.MainActivity}" drawable="example_icon"/>
 </resources>
