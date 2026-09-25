@@ -1,0 +1,57 @@
+name: Test pagination-1360 (per_page=10, fix/pagination-1360 branch)
+
+on:
+  workflow_dispatch:
+    inputs:
+      operations-per-run:
+        description: 'operations-per-run value for this dispatch'
+        default: '1000'
+        required: false
+      days-before-pr-stale:
+        description: 'days-before-pr-stale value for this dispatch'
+        default: '-1'
+        required: false
+      days-before-pr-close:
+        description: 'days-before-pr-close value for this dispatch'
+        default: '-1'
+        required: false
+      sort-by:
+        description: 'sort-by value for this dispatch'
+        default: 'created'
+        required: false
+      ascending:
+        description: 'ascending value for this dispatch'
+        default: 'false'
+        required: false
+      debug-only:
+        description: 'debug-only value for this dispatch'
+        default: 'true'
+        required: false
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: v-chiranjib-swain/stale@test/pagination-1360-per-page-10
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          debug-only: ${{ github.event.inputs.debug-only }}
+          only-pr-labels: pagination-1360
+          exempt-pr-labels: pagination-1360-exempt
+          stale-pr-label: U:Stale
+          stale-pr-message: ''
+          close-pr-message: ''
+          close-pr-label: ''
+          days-before-pr-stale: ${{ github.event.inputs.days-before-pr-stale }}
+          days-before-pr-close: ${{ github.event.inputs.days-before-pr-close }}
+          days-before-issue-stale: -1
+          days-before-issue-close: -1
+          operations-per-run: ${{ github.event.inputs.operations-per-run }}
+          sort-by: ${{ github.event.inputs.sort-by }}
+          ascending: ${{ github.event.inputs.ascending }}
